@@ -277,7 +277,6 @@
 							<sectionLabelIncludesComponentLabel>1</sectionLabelIncludesComponentLabel>
 							<chunkedOutput>true</chunkedOutput>
 							<chunkSectionDepth>1</chunkSectionDepth>
-							<chapterAutolabel>1</chapterAutolabel>
 							<sectionAutolabel>0</sectionAutolabel>
 							<useIdAsFilename>true</useIdAsFilename>
 							<includes>dhis2_developer_manual.xml</includes>
