@@ -5690,6 +5690,7 @@ qPEdI1xn7k0,COMPLETED,&lt;pid>,&lt;psid>,&lt;enrollment-id>,&lt;ou>,2016-01-01,2
         &quot;created&quot;: &quot;2013-05-30T10:24:06.181+0000&quot;,
         "text": "Data looks suspicious, could be a data entry mistake.",
         &quot;type&quot;: &quot;REPORT_TABLE&quot;,
+        "likes": 2,
         "user": {
           "id": "uk7diLujYif"
         },
@@ -5701,6 +5702,7 @@ qPEdI1xn7k0,COMPLETED,&lt;pid>,&lt;psid>,&lt;enrollment-id>,&lt;ou>,2016-01-01,2
         &quot;created&quot;: &quot;2013-05-29T14:47:13.081+0000&quot;,
         "text": "Delivery rates in Bo looks high.",
         &quot;type&quot;: &quot;CHART&quot;,
+        "likes": 3,
         "user": {
           "id": "uk7diLujYif"
         },
@@ -5858,7 +5860,7 @@ qPEdI1xn7k0,COMPLETED,&lt;pid>,&lt;psid>,&lt;enrollment-id>,&lt;ou>,2016-01-01,2
       <para>You can use the same URL pattern as above using a DELETE request to the remove the
         interpretation comment.</para>
     </section>
-    <section>
+    <section xml:id="webapi_liking_interpretations">
       <title>Liking interpretations</title>
       <para>To like an interpretation you can use an empty POST request to the
           <emphasis>like</emphasis>
