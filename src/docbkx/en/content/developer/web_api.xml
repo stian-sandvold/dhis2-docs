@@ -5676,7 +5676,7 @@ qPEdI1xn7k0,COMPLETED,&lt;pid>,&lt;psid>,&lt;enrollment-id>,&lt;ou>,2016-01-01,2
       event reports and event charts, you can write and share data interpretations. An
       interpretation can be a comment, question, observation or interpretation about a data report or
       visualization.<screen>/api/24/interpretations</screen></para>
-    <section xml:id="webapi_reading_interpretation">
+    <section xml:id="webapi_reading_interpretations">
       <title>Reading interpretations</title>
       <para>To read interpretations we will interact with the <emphasis role="italic"
           >/api/24/interpretations</emphasis> resource. A typical GET request using field filtering
