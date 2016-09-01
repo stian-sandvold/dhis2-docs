@@ -5869,6 +5869,24 @@ qPEdI1xn7k0,COMPLETED,&lt;pid>,&lt;psid>,&lt;enrollment-id>,&lt;ou>,2016-01-01,2
         interpretation once.</para>
       <para>To remove a like for an interpretation you can use a DELETE request to the same resource
         as for the like operation.</para>
+      <para>The like status of an intepretation can be viewed by looking at the regular Web API
+        representation:<screen>GET /api/24/interpretations/{id}</screen></para>
+      <para>The like information is found in the <emphasis>likes</emphasis> field, which represents
+        the number of likes, and the <emphasis>likedBy</emphasis> array, which enumerates the users
+        who have liked the interpretation.</para>
+      <para>
+        <screen>{
+    &quot;id&quot;: &quot;XSHiFlHAhhh&quot;,
+    "text": "Data looks suspicious, could be a data entry mistake.",
+    &quot;type&quot;: &quot;REPORT_TABLE&quot;,
+    "likes": 2,
+    "likedBy": [{
+        "id": "k7Hg12fJ2f1"
+    }, {
+        "id: "gYhf26fFkjFS"
+    }]
+}</screen>
+      </para>
     </section>
   </section>
   <section xml:id="webapi_viewing_analytical_resource_representations">
