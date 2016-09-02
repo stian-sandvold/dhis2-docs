@@ -7962,15 +7962,15 @@ ORDER BY oul.level, par.name, ou.name</screen>
     <section xml:id="webapi_analytics_data_value_set_format">
       <title>Data value set format</title>
       <para>The analytics resource allows for returning aggregated data in the data value set
-        format. This format represents raw data values, as opposed to data which is aggregated along
-        various dimensions. Exporting aggregated data as regular data values is useful for data
-        exchange between systems when the target system contains data of finer granularity comared
-        to what the destination system is interested in. </para>
-      <para>As an example, one can use an indicator in the target system to summarize data for
+        format. This format represents raw data values, as opposed to data which has been aggregated
+        along various dimensions. Exporting aggregated data as regular data values is useful for
+        data exchange between systems when the target system contains data of finer granularity
+        compared to what the destination system is storing. </para>
+      <para>As an example one can specify an indicator in the target system to summarize data for
         multiple data elements and import this data for a single data element in the destionation
-        system. As another example, one can aggregate data collected at organisation unit level 4 in
-        the target system to level 2, and import that data in the destionation system.</para>
-      <para>You can retrieve data in the data value format from the
+        system. As another example one can aggregate data collected at organisation unit level 4 in
+        the target system to level 2 and import that data in the destination system.</para>
+      <para>You can retrieve data in the raw data value set format from the
           <emphasis>analytics/dataValueSets</emphasis>
         resource:<screen>/api/24/analytics/dataValueSet</screen></para>
       <para>The following resource representations are supported:<itemizedlist>
