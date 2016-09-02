@@ -13135,9 +13135,9 @@ interval=WEEK" -u admin:district</screen>
   }
  ]
 }</screen></para>
-    <para>A client can follow the URLs and install a metadata package through a POST request as
-      text/plain with the metadata package URL as the payload to the <emphasis role="italic"
-        >metadataPull</emphasis>
+    <para>A client can follow the URLs and install a metadata package through a POST request with
+      content type <emphasis>text/plain</emphasis> with the metadata package URL as the payload to
+      the <emphasis role="italic">metadataPull</emphasis>
       resource:<screen>POST /api/synchronization/metadataPull</screen></para>
     <para>An example curl command looks like
       this:<screen>curl &quot;localhost:8080/api/synchronization/metadataPull&quot; -X POST
