@@ -12818,7 +12818,7 @@ interval=WEEK" -u admin:district</screen>
 }</screen></para>
     </section>
     <section>
-      <title>Create and update values</title>
+      <title>Create values</title>
       <para>To create a new key and value for a
         namespace:<screen>POST /api/24/dataStore/&lt;namespace&gt;/&lt;key&gt;</screen></para>
       <para>Example curl request for create, assuming a valid json
@@ -12831,9 +12831,12 @@ interval=WEEK" -u admin:district</screen>
     &quot;status&quot;: &quot;OK&quot;,
     &quot;message&quot;: &quot;Key &apos;key_1&apos; created.&quot;
 }</screen></para>
-      <para>If you require the data you store to be encrypted (For example user credentials or
+      <para>If you require the data you store to be encrypted (for example user credentials or
         similar) you can append a query to the url like
         this:<screen>GET /api/24/dataStore/&lt;namespace>/&lt;key>?encrypt=true</screen></para>
+      </section>
+      <section>
+        <title>Update values</title>
       <para>To update a key that exists in a
         namespace:<screen>PUT /api/24/dataStore/&lt;namespace&gt;/&lt;key&gt;</screen></para>
       <para>Example curl request for update, assuming valid JSON
@@ -12964,7 +12967,7 @@ interval=WEEK" -u admin:district</screen>
 }</screen></para>
     </section>
     <section>
-      <title>Add new value</title>
+      <title>Create value</title>
       <para>Adds a new value to a given key in a given
         namespace.<screen>POST /api/24/userDataStore/&lt;namespace>/&lt;key></screen></para>
       <para>Example
