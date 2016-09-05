@@ -8388,8 +8388,8 @@ ORDER BY oul.level, par.name, ou.name</screen>
         <para>You can filter the &quot;Age&quot; data element for multiple, specific ages using the
           IN operator like this:<screen>&amp;dimension=qrur9Dvnyt5:IN:18;19;20</screen></para>
         <para>You can specify multiple filters for a given item by repeating the operator and filter
-          components:</para>
-        <screen>&amp;dimension=qrur9Dvnyt5:GT:5;LT;15</screen>
+          components, all separated with semi-colons:</para>
+        <screen>&amp;dimension=qrur9Dvnyt5:GT:5:LT:15</screen>
         <para>The available operators are listed below.</para>
         <table frame="all">
           <title>Filter operators</title>
