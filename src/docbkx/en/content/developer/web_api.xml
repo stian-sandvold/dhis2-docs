@@ -7971,7 +7971,7 @@ ORDER BY oul.level, par.name, ou.name</screen>
         system. As another example one can aggregate data collected at organisation unit level 4 in
         the target system to level 2 and import that data in the destination system.</para>
       <para>You can retrieve data in the raw data value set format from the
-          <emphasis>analytics/dataValueSets</emphasis>
+          <emphasis>analytics/dataValueSet</emphasis>
         resource:<screen>/api/24/analytics/dataValueSet</screen></para>
       <para>The following resource representations are supported:<itemizedlist>
           <listitem>
