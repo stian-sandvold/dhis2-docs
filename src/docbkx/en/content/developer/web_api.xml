@@ -10013,12 +10013,13 @@ interval=WEEK" -u admin:district</screen>
   </section>
   <section xml:id="webapi_program_messages">
     <title>Program Messages</title>
-    <para>Program Message holds reminders and alerts data related to specific Program or Program
-      Stage. Web APIs are exposed to handle CRUD operations on Program Messages and we will go
-      through them in the below section.<screen>/api/24/messages</screen></para>
+    <para>Program message lets you send messages to tracked entity instances, contact addresses
+      assiociated with organisation units, phone numbers and email addresses. You can send messages
+      through the <emphasis>messages</emphasis> resource.<screen>/api/24/messages</screen></para>
     <section>
       <title>Sending program messages</title>
-      <para>Program Message holds alert or reminder data that needs to be sent to concerned person
+      <para>Programs messages can send </para>
+      <para>Program message holds alert or reminder data that needs to be sent to concerned person
         via Delivery channels. Currently we are supporting only two Delivery Channels SMS and EMAIL
         but more can be added if needed. In order to use these channels, SMS and EMAIL setting
         should be in place prior to sending messages using these channels. There are four different
@@ -10038,24 +10039,118 @@ interval=WEEK" -u admin:district</screen>
           <listitem>
             <para>List of email addresses</para>
           </listitem>
-        </itemizedlist> Below is the sample json payload for sending messages using the POST method. </para>
-      <screen>/api/24/messages</screen>
+        </itemizedlist> Below is a sample JSON payload for sending messages using POST requests. </para>
+      <screen>POST /api/24/messages</screen>
       <screen>{
-    &quot;recipients&quot;: {
-        &quot;trackedEntityInstanceId&quot;{
-        &quot;id&quot;: &quot;UN810PwyVYO&quot;
-        }
-    },    
-    &quot;programStageInstance&quot;: {
-        &quot;id&quot;: &quot;pSllsjpfLH2&quot;
+    "recipients": {
+        "trackedEntityInstance": {
+            "id": "UN810PwyVYO"
+        },
+        "organisationUnit": {
+            "id": "Rp268JB6Ne4"
+        },
+        "phoneNumbers": [
+            "55512345",
+            "55545678"
+        ],
+        "emailAddresses": [
+            "johndoe@mail.com",
+            "markdoe@mail.com"
+        ]
     },
-    &quot;deliveryChannels&quot;: [
-        &quot;SMS&quot;
+    "programInstance": {
+        "id": "f3rg8gFag8j"
+    },
+    "programStageInstance": {
+        "id": "pSllsjpfLH2";
+    },
+    "deliveryChannels": [
+        "SMS", "EMAIL"
     ],
-    &quot;text&quot;: &quot;An outbreak has been detected&quot;,
-    &quot;subject&quot;: &quot;Outbreak alert&quot;,
-    &quot;storeCopy&quot;: false
+    "subject": "Outbreak alert",
+    "text": "An outbreak has been detected",
+    "storeCopy": false
 }</screen>
+      <para>The fields are explained in the following table.<table frame="all">
+          <title>Program message payload</title>
+          <tgroup cols="4">
+            <colspec colname="c1" colnum="1" colwidth="1*"/>
+            <colspec colname="newCol2" colnum="2" colwidth="1*"/>
+            <colspec colname="c2" colnum="3" colwidth="1.45*"/>
+            <colspec colname="c3" colnum="4" colwidth="1.22*"/>
+            <thead>
+              <row>
+                <entry>Field</entry>
+                <entry>Required</entry>
+                <entry>Description</entry>
+                <entry>Values</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>recipients</entry>
+                <entry>Yes</entry>
+                <entry>Recipients of the program message. At least one recipient must be specified.
+                  Any number of recipients / types can be specified for a message.</entry>
+                <entry>Can be trackedEntityInstance, organisationUnit, an array of phoneNumbers or
+                  an array of emailAddresses.</entry>
+              </row>
+              <row>
+                <entry>programInstance</entry>
+                <entry>Either this or programStageInstance required</entry>
+                <entry>The program instance / enrollment.</entry>
+                <entry>Enrollment ID.</entry>
+              </row>
+              <row>
+                <entry>programStageInstance</entry>
+                <entry>Either this or programInstance required</entry>
+                <entry>The program stage instance / event.</entry>
+                <entry>Event ID.</entry>
+              </row>
+              <row>
+                <entry>deliveryChannels</entry>
+                <entry>Yes</entry>
+                <entry>Array of delivery channels.</entry>
+                <entry>SMS | EMAIL</entry>
+              </row>
+              <row>
+                <entry>subject</entry>
+                <entry>No</entry>
+                <entry>The message subject. Not applicable for SMS delivery channel.</entry>
+                <entry>Text.</entry>
+              </row>
+              <row>
+                <entry>text</entry>
+                <entry>Yes</entry>
+                <entry>The message text.</entry>
+                <entry>Text.</entry>
+              </row>
+              <row>
+                <entry>storeCopy</entry>
+                <entry>No</entry>
+                <entry>Whether to store a copy of the program message in DHIS 2.</entry>
+                <entry>false (default) | true</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
+      <para>A minimalistic example for sending a message over SMS to a tracked entity instance looks
+        like
+        this:<screen>curl -d @message.json "https://play.dhis2.org/demo/api/24/messages" 
+  -H "Content-Type:application/json" -u admin:district -v</screen><screen>{
+    "recipients": {
+        "trackedEntityInstance": {
+            "id": "PQfMcpmXeFE"
+        }
+    },
+    "programInstance": {
+        "id": "JMgRZyeLWOo"
+    }
+    "deliveryChannels": [
+        "SMS"
+    ],
+    "text": "Please make a visit on Thursday"
+}</screen></para>
     </section>
 
     <section>
