@@ -10018,58 +10018,70 @@ interval=WEEK" -u admin:district</screen>
       through the <emphasis>messages</emphasis> resource.<screen>/api/24/messages</screen></para>
     <section>
       <title>Sending program messages</title>
-      <para>Programs messages can send </para>
-      <para>Program message holds alert or reminder data that needs to be sent to concerned person
-        via Delivery channels. Currently we are supporting only two Delivery Channels SMS and EMAIL
-        but more can be added if needed. In order to use these channels, SMS and EMAIL setting
-        should be in place prior to sending messages using these channels. There are four different
-        type of recipients which are listed below. In case of TrackedEntityInstance and
-        OrganisationUnit, system will fetch their respective phone Number and email address based on
-        Delivery Channel specified in payload. Raw phone Numbers and email Addresses can also be
-        used as recipients. <itemizedlist>
+      <para>Program messages can be sent using two delivery channels:<itemizedlist>
           <listitem>
-            <para>Tracked entity instance</para>
+            <para>SMS (SMS)</para>
           </listitem>
           <listitem>
-            <para>Organisation unit</para>
+            <para>Email address (EMAIL)</para>
           </listitem>
-          <listitem>
-            <para>List of phone numbers</para>
-          </listitem>
-          <listitem>
-            <para>List of email addresses</para>
-          </listitem>
-        </itemizedlist> Below is a sample JSON payload for sending messages using POST requests. </para>
+        </itemizedlist></para>
+      <para>Program messages can be sent to various recipients:</para>
+      <para> <itemizedlist>
+        <listitem>
+          <para>Tracked entity instance: The system will look up attributes of value type
+              PHONE_NUMBER or EMAIL (depending on the specified delivery channels) and use the
+              corresponding attribute values.</para>
+        </listitem>
+        <listitem>
+          <para>Organisation unit: The system will use the phone number or email information
+              registered for the organisation unit.</para>
+        </listitem>
+        <listitem>
+          <para>List of phone numbers: The system will use the explicitly defined phone
+              numbers.</para>
+        </listitem>
+        <listitem>
+          <para>List of email addresses: The system will use the explicitly defined email
+              addresses.</para>
+        </listitem>
+      </itemizedlist></para>
+      
+      <para>Below is a sample JSON payload for sending messages using POST requests. Note that
+        message resource accepts a wrapper object named <emphasis>programMessages</emphasis> which
+        can contain any number of program messages.</para>
       <screen>POST /api/24/messages</screen>
       <screen>{
-    "recipients": {
-        "trackedEntityInstance": {
-            "id": "UN810PwyVYO"
+    "programMessages": [{
+        "recipients": {
+            "trackedEntityInstance": {
+                "id": "UN810PwyVYO"
+            },
+            "organisationUnit": {
+                "id": "Rp268JB6Ne4"
+            },
+            "phoneNumbers": [
+                "55512345",
+                "55545678"
+            ],
+            "emailAddresses": [
+                "johndoe@mail.com",
+                "markdoe@mail.com"
+            ]
         },
-        "organisationUnit": {
-            "id": "Rp268JB6Ne4"
+        "programInstance": {
+            "id": "f3rg8gFag8j"
         },
-        "phoneNumbers": [
-            "55512345",
-            "55545678"
+        "programStageInstance": {
+            "id": "pSllsjpfLH2"
+        },
+        "deliveryChannels": [
+            "SMS", "EMAIL"
         ],
-        "emailAddresses": [
-            "johndoe@mail.com",
-            "markdoe@mail.com"
-        ]
-    },
-    "programInstance": {
-        "id": "f3rg8gFag8j"
-    },
-    "programStageInstance": {
-        "id": "pSllsjpfLH2";
-    },
-    "deliveryChannels": [
-        "SMS", "EMAIL"
-    ],
-    "subject": "Outbreak alert",
-    "text": "An outbreak has been detected",
-    "storeCopy": false
+        "subject": "Outbreak alert",
+        "text": "An outbreak has been detected",
+        "storeCopy": false
+    }]
 }</screen>
       <para>The fields are explained in the following table.<table frame="all">
           <title>Program message payload</title>
@@ -10138,18 +10150,20 @@ interval=WEEK" -u admin:district</screen>
         like
         this:<screen>curl -d @message.json "https://play.dhis2.org/demo/api/24/messages" 
   -H "Content-Type:application/json" -u admin:district -v</screen><screen>{
-    "recipients": {
-        "trackedEntityInstance": {
-            "id": "PQfMcpmXeFE"
-        }
-    },
-    "programInstance": {
-        "id": "JMgRZyeLWOo"
-    }
-    "deliveryChannels": [
-        "SMS"
-    ],
-    "text": "Please make a visit on Thursday"
+    "programMessages": [{
+        "recipients": {
+            "trackedEntityInstance": {
+                "id": "PQfMcpmXeFE"
+            }
+        },
+        "programInstance": {
+            "id": "JMgRZyeLWOo"
+        },
+        "deliveryChannels": [
+            "SMS"
+        ],
+        "text": "Please make a visit on Thursday"
+    }]
 }</screen></para>
     </section>
 
