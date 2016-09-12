@@ -464,6 +464,12 @@ programIdScheme, programStageIdScheme, trackedEntityIdScheme, trackedEntityAttri
       using the <emphasis role="italic">query</emphasis> query variable. In this example we query
       for all data elements with the word &quot;anaemia&quot; in the name:</para>
     <screen>/api/24/dataElements?query=anaemia</screen>
+    <para>You can get specific pages and page sizes of objects like this:</para>
+    <screen>/api/24/dataElements.json?page=2&amp;pageSize=20</screen>
+    <para>You can completely disable paging like this:</para>
+    <screen>/api/24/indicatorGroups.json?paging=false</screen>
+    <para>To order the result based on a specific property:</para>
+    <screen>/api/24/indicators.json?order=shortName:desc</screen>
     <para>You can find an object based on its ID across all object types through the <emphasis
         role="italic">identifiableObjects</emphasis> resource:</para>
     <screen>/api/24/identifiableObjects/&lt;id&gt;</screen>
